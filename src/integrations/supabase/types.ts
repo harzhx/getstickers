@@ -14,7 +14,95 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      order_files: {
+        Row: {
+          created_at: string
+          id: string
+          order_id: string
+          original_filename: string
+          storage_path: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          order_id: string
+          original_filename: string
+          storage_path: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          order_id?: string
+          original_filename?: string
+          storage_path?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "order_files_order_id_fkey"
+            columns: ["order_id"]
+            isOneToOne: false
+            referencedRelation: "orders"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      orders: {
+        Row: {
+          amount_cents: number
+          created_at: string
+          currency: string
+          email: string
+          id: string
+          lookup_token: string
+          notes: string | null
+          pack: Database["public"]["Enums"]["pack_tier"]
+          pack_name: string
+          razorpay_order_id: string | null
+          razorpay_payment_id: string | null
+          status: Database["public"]["Enums"]["order_status"]
+          sticker_count: number
+          style: Database["public"]["Enums"]["sticker_style"]
+          telegram_handle: string
+          updated_at: string
+        }
+        Insert: {
+          amount_cents: number
+          created_at?: string
+          currency?: string
+          email: string
+          id?: string
+          lookup_token?: string
+          notes?: string | null
+          pack: Database["public"]["Enums"]["pack_tier"]
+          pack_name: string
+          razorpay_order_id?: string | null
+          razorpay_payment_id?: string | null
+          status?: Database["public"]["Enums"]["order_status"]
+          sticker_count: number
+          style: Database["public"]["Enums"]["sticker_style"]
+          telegram_handle: string
+          updated_at?: string
+        }
+        Update: {
+          amount_cents?: number
+          created_at?: string
+          currency?: string
+          email?: string
+          id?: string
+          lookup_token?: string
+          notes?: string | null
+          pack?: Database["public"]["Enums"]["pack_tier"]
+          pack_name?: string
+          razorpay_order_id?: string | null
+          razorpay_payment_id?: string | null
+          status?: Database["public"]["Enums"]["order_status"]
+          sticker_count?: number
+          style?: Database["public"]["Enums"]["sticker_style"]
+          telegram_handle?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -23,7 +111,14 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      order_status:
+        | "pending"
+        | "paid"
+        | "failed"
+        | "in_production"
+        | "delivered"
+      pack_tier: "starter" | "popular" | "studio"
+      sticker_style: "animated_vector" | "three_d" | "realistic"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +245,10 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      order_status: ["pending", "paid", "failed", "in_production", "delivered"],
+      pack_tier: ["starter", "popular", "studio"],
+      sticker_style: ["animated_vector", "three_d", "realistic"],
+    },
   },
 } as const
