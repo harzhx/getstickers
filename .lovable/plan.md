@@ -26,7 +26,7 @@ A one-stop site where customers upload their photos/art, pick a sticker style, c
 
 | Pack | Stickers | Animated Vector | 3D | Realistic |
 |---|---|---|---|---|
-| Starter | 5 | ₹499 | ₹699 | ₹899 |
+| Starter | 5 | $6 | ₹699 | ₹899 |
 | Popular | 15 | ₹1,199 | ₹1,699 | ₹2,199 |
 | Studio | 30 | ₹1,999 | ₹2,899 | ₹3,699 |
 
